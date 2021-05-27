@@ -11,6 +11,9 @@ public class tree {
 	
 	public static void display(Node node)
 	{
+		if(node==null)
+			return; //edge case
+			
 		String s=node.data+" -> ";
 		for(Node child:node.childs) {
 			s+=child.data + ",";
