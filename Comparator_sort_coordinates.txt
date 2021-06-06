@@ -1,0 +1,85 @@
+
+import java.io.*;
+import java.util.*;
+class GFG {
+	public static void main (String[] args) {
+		Scanner sc=new Scanner(System.in);
+		
+		int t=sc.nextInt();
+		
+		while(t-->0)
+		{
+		    int n=sc.nextInt();
+		    Point points[] = new Point[n];
+		    for(int i=0;i<n;i++)
+		    {
+		        points[i]= new Point(sc.nextInt(),sc.nextInt());
+		    }
+		    coordinatesSort(points);
+		    for(int i=0;i<n;i++)
+		    {
+		        System.out.print(points[i].toString());
+		    }
+		    
+		    System.out.println();
+		}
+	}
+	
+ // } Driver Code Ends
+//User function Template for Java
+
+/*
+This is what the class looks like
+class Point
+{
+    public int x;
+    public int y;
+    
+    public Point(int x,int y)
+    {
+        this.x=x;
+        this.y=y;
+    }
+    
+    public String toString()
+    {
+        return("("+this.x+","+this.y+") ");
+    }
+}
+*/
+public static void coordinatesSort(Point [] points)
+{
+    //Your code here
+    //Use lambda expressions to sort the array in the required way
+    Arrays.sort(points , new Comparator<Point>() {
+            @Override public int compare(Point p1, Point p2)
+            {
+                if(p1.x-p2.x == 0)
+                return p1.y - p2.y;
+                else
+                return p1.x - p2.x;
+            }
+        });
+}
+
+// { Driver Code Starts.
+
+	
+}
+
+class Point
+{
+    public int x;
+    public int y;
+    
+    public Point(int x,int y)
+    {
+        this.x=x;
+        this.y=y;
+    }
+    
+    public String toString()
+    {
+        return("("+this.x+","+this.y+") ");
+    }
+}  // } Driver Code Ends
