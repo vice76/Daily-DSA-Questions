@@ -60,11 +60,11 @@ public class tree {
 		return root;
 	}
 
-	public static Node in_and_post(int[] in, int[] post, int posti, int ini, int poste, int ine) {
+	public static Node in_and_pre(int[] in, int[] pre, int prei, int ini, int pree, int ine) {
 		if (ini > ine)
 			return null;
 
-		int rtData = post[poste];
+		int rtData = pre[prei];
 		int inrt = -1;
 		for (int i = ini; i <= ine; i++) {
 			if (in[i] == rtData) {
@@ -72,11 +72,11 @@ public class tree {
 				break;
 			}
 		}
-		int lposts = posti , lins = ini, line = inrt - 1, lposte = line - lins + lposts, rposts = lposte + 1, rposte = poste-1,
+		int lpres = prei + 1, lins = ini, line = inrt - 1, lpree = line - lins + lpres, rpres = lpree + 1, rpree = pree,
 				rins = inrt + 1, rine = ine;
 		Node root = new Node(rtData, null, null);
-		root.left = in_and_post(in, post, lposts, lins, lposte, line);
-		root.right = in_and_post(in, post, rposts, rins, rposte, rine);
+		root.left = in_and_pre(in, pre, lpres, lins, lpree, line);
+		root.right = in_and_pre(in, pre, rpres, rins, rpree, rine);
 		return root;
 	}
 
@@ -85,13 +85,13 @@ public class tree {
 		System.out.println("enter root");
 		int n = sc.nextInt();
 		// 1 2 3 4 5 6 7 -1 -1 -1 -1 8 9 -1 -1 -1 -1 -1 -1
-		int post[] = new int[n];
+		int pre[] = new int[n];
 		int in[] = new int[n];
 		for (int i = 0; i < n; i++)
-			post[i] = sc.nextInt();
+			pre[i] = sc.nextInt();
 		for (int i = 0; i < n; i++)
 			in[i] = sc.nextInt();
-		Node root = in_and_post(in, post, 0, 0, n - 1, n - 1);
+		Node root = in_and_pre(in, pre, 0, 0, n - 1, n - 1);
 		display(root);
 	}
 
